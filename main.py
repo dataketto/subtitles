@@ -40,6 +40,7 @@ st.info('Try : cancer crowdfunding with Ketto , monthly donation with Ketto SIP 
 def process_audio(audio_file: io.BytesIO) -> str:
     with tempfile.NamedTemporaryFile() as tmp:
         tmp.write(audio_file.read())
+        
         model = whisper.load_model("tiny")
         result = model.transcribe(tmp.name)  # type: ignore
 
@@ -94,10 +95,11 @@ audio_file = st.file_uploader("Upload a file")
 
 if audio_file:
     st.audio(audio_file)
-    with tempfile.NamedTemporaryFile() as tmp:
-        tmp.write(audio_file.read())
+    # with tempfile.NamedTemporaryFile() as tmp:
+    #     tmp.write(audio_file.read())
+    a_file = whisper.load_audio(audio_file)
     model = whisper.load_model("tiny")
-    result = model.transcribe(tmp.name)
+    result = model.transcribe(a_file)
     # result = process_audio(audio_file)
 
     st.header("Result")
