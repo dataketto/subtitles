@@ -36,7 +36,7 @@ st.info('Try : cancer crowdfunding with Ketto , monthly donation with Ketto SIP 
 #     return model
 
 
-@st.experimental_memo
+@st.cache_data
 def process_audio(audio_file: io.BytesIO) -> str:
     with tempfile.NamedTemporaryFile() as tmp:
         tmp.write(audio_file.read())
