@@ -94,8 +94,11 @@ audio_file = st.file_uploader("Upload a file")
 
 if audio_file:
     st.audio(audio_file)
-
-    result = process_audio(audio_file)
+    with tempfile.NamedTemporaryFile() as tmp:
+        tmp.write(audio_file.read())
+    model = whisper.load_model("tiny")
+    result = model.transcribe(tmp.name)
+    # result = process_audio(audio_file)
 
     st.header("Result")
     st.write(result)  # type: ignore
