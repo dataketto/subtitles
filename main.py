@@ -3,6 +3,7 @@ import streamlit as st
 import openai
 import whisper
 import io
+import os
 # page configuration 
 st.set_page_config(page_title="Subtitle App", page_icon="🌀",layout="wide")
 
@@ -92,7 +93,8 @@ def process_audio(audio_file: io.BytesIO) -> str:
 st.title("Scribe")
 
 audio_file = st.file_uploader("Upload a file")
-
+file_path = st.text_input("Paste a Folder Path (e.g. D:\Download\ ) ")
+st.write(os.getcwd())
 if audio_file:
     st.audio(audio_file)
     # with tempfile.NamedTemporaryFile() as tmp:
