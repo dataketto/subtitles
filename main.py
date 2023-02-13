@@ -97,7 +97,7 @@ if audio_file:
     st.audio(audio_file)
     # with tempfile.NamedTemporaryFile() as tmp:
     #     tmp.write(audio_file.read())
-    a_file = whisper.load_audio(audio_file)
+    a_file = whisper.load_audio(audio_file.read())
     model = whisper.load_model("tiny")
     result = model.transcribe(a_file)
     # result = process_audio(audio_file)
