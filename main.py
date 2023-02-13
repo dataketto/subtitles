@@ -1,11 +1,8 @@
 import tempfile 
-from functools import lru_cache
 import streamlit as st
 import openai
 import whisper
-import numpy as np
 import io
-from scipy.io.wavfile import read, write
 # page configuration 
 st.set_page_config(page_title="Subtitle App", page_icon="🌀",layout="wide")
 
